@@ -21,9 +21,26 @@ namespace Tic_Tac_Toe
             Console.WriteLine("###############################################################");
             Console.WriteLine();
             Console.WriteLine("Herzlich Willkommen bei Tic Tac Toe!");
-            Console.WriteLine("Starte das Spiel gegen den Computergegner...");
 
             Game game = new Game();
+            do
+            {
+                game.PlayMatch();
+            }
+            while (WantsToPlayAgain());
+
+            Console.WriteLine("Dann auf Wiedersehen. Bis zum nächsten Mal!");
+            Console.ReadKey(true);
+        }
+
+        /*
+         * Fragt den Benutzer, ob eine weitere Runde gestartet werden soll.
+         * Liefert true, wenn eine weitere Runde gespielt werden möchte, sonst false.
+         */
+        static bool WantsToPlayAgain()
+        {
+            Console.Write("Weitere Runde spielen? (j/n): ");
+            return Console.ReadLine().Equals("j", StringComparison.OrdinalIgnoreCase);
         }
     }
 }
