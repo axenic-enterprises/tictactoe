@@ -4,7 +4,18 @@ using System.Text;
 
 namespace Tic_Tac_Toe.Players
 {
-    class IPlayer
-    {
-    }
+	/*
+	 * Interface um die Kompatibilität von KI und echtem Spieler sicher zu stellen
+	 */
+    interface IPlayer
+	{
+		/*
+		 * Gibt Position des neues Feldes an
+		 */
+		(int, int) GetNewPosition();
+
+
+
+	}
+
 }
