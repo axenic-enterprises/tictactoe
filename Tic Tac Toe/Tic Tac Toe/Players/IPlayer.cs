@@ -14,8 +14,6 @@ namespace Tic_Tac_Toe.Players
 		 */
 		(int, int) GetNewPosition();
 
-
-
 	}
 
 }
