@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Tic_Tac_Toe.Players
 {
-    class IPlayer
+    interface IPlayer
     {
     }
 }
