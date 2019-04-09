@@ -22,7 +22,9 @@ namespace Tic_Tac_Toe
             Console.WriteLine();
             Console.WriteLine("Herzlich Willkommen bei Tic Tac Toe!");
 
-            Game game = new Game();
+            Game game = new Game(3);
+			game.SetPlayer(new LocalPlayer(game), new LocalPlayer(game));
+
             do
             {
                 game.PlayMatch();
