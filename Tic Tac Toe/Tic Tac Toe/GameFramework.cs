@@ -234,6 +234,7 @@ namespace Tic_Tac_Toe.GameFramework
 
 	/*
 	 * Unterscheidet die beiden Spieler und leere Felder von einander
+	 * None = Leeres Feld; Empty = Null
 	 */
 	enum PlayerType
 	{
