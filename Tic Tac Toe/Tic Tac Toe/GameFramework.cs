@@ -43,12 +43,12 @@ namespace Tic_Tac_Toe.GameFramework
 
 			if (this.player1 == null)
 			{
-				this.player1 = new LocalPlayer(this);
+				this.player1 = new LocalPlayer(this, PlayerType.Player1);
 			}
 
 			if (this.player2 == null)
 			{
-				this.player2 = new LocalPlayer(this);
+				this.player2 = new LocalPlayer(this, PlayerType.Player2);
 			}
 
 		}

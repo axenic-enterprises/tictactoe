@@ -39,13 +39,13 @@ namespace Tic_Tac_Toe.Players
 		 * Schreibt einen 2D-int-Array in die Konsole
 		 * Index verhält sich, wie in einem Koordinatensystem
 		 */
-		public void Write(PlayerType[,] playboard)
+		private void Write(PlayerType[,] playboard)
 		{
 			// "Kantengrößte des Quadrats"
 			int size = Convert.ToInt32(Math.Sqrt(playboard.Length));
 
 			// Felder in gewünschter Reihenfolge durchgehen und mit spezieller Formatierung ausgeben
-			for (int x = size - 1; x < -1; x--)
+			for (int x = size - 1; x > -1; x--)
 			{
 				string row = "[";
 
