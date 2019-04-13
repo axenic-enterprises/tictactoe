@@ -23,7 +23,7 @@ namespace Tic_Tac_Toe
             Console.WriteLine("Herzlich Willkommen bei Tic Tac Toe!");
 
             Game game = new Game(3);
-			game.SetPlayer(new LocalPlayer(game), new LocalPlayer(game));
+			game.SetPlayer(new LocalPlayer(game, PlayerType.Player1), new LocalPlayer(game, PlayerType.Player2));
 
             do
             {
@@ -34,7 +34,7 @@ namespace Tic_Tac_Toe
             Console.WriteLine("Tschüss, bis zum nächsten Mal!");
             Console.ReadKey(true);
         }
-
+		
         /*
          * Fragt den Benutzer, ob eine weitere Runde gestartet werden soll.
          * Liefert true, wenn eine weitere Runde gespielt werden möchte, sonst false.

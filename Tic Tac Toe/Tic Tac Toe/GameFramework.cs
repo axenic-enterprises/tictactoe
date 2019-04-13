@@ -43,12 +43,12 @@ namespace Tic_Tac_Toe.GameFramework
 
 			if (this.player1 == null)
 			{
-				this.player1 = new LocalPlayer(this);
+				this.player1 = new LocalPlayer(this, PlayerType.Player1);
 			}
 
 			if (this.player2 == null)
 			{
-				this.player2 = new LocalPlayer(this);
+				this.player2 = new LocalPlayer(this, PlayerType.Player2);
 			}
 
 		}
@@ -66,6 +66,162 @@ namespace Tic_Tac_Toe.GameFramework
             Console.WriteLine("RUNDE ABGESCHLOSSEN");
             //Ergebnis ausgeben
         }
+
+		/*
+		 * Gibt den Spielstatus einen mitgegebenen Spielfeldes zurück
+		 */
+		public static GameState GiveGameState(PlayerType[,] playboard)
+		{
+			PlayerType playerWon = GivePlayerWon(playboard);
+
+			if (playerWon == PlayerType.Player1)
+			{
+				return GameState.Player1Won;
+			}
+			else if (playerWon == PlayerType.Player2)
+			{
+				return GameState.Player2Won;
+			}
+
+			int size = Convert.ToInt32(Math.Sqrt(playboard.Length));
+			bool areThereFreeFields = false;
+
+			for (int x = 0; x < size; x++)
+			{
+
+				for (int y = 0; y < size; y++)
+				{
+					PlayerType field = playboard[x, y];
+					
+					if (field == PlayerType.None)
+					{
+						areThereFreeFields = true;
+					}
+
+				}
+
+			}
+
+			if (areThereFreeFields)
+			{
+				return GameState.Running;
+			} 
+			else
+			{
+				return GameState.Draw;
+			}
+
+		}
+
+		/*
+		 * Testet, ob auf einem mitgegebenen Spielfeld ein Spieler gewonnen hat
+		 */
+		public static PlayerType GivePlayerWon(PlayerType[,] playboard)
+		{
+			int size = Convert.ToInt32(Math.Sqrt(playboard.Length));
+
+			// Zeilen und Spalten überprüfen
+			for (int cord1 = 0; cord1 < size; cord1++)
+			{
+				PlayerType check1 = PlayerType.Empty;
+				PlayerType check2 = PlayerType.Empty;
+
+				bool isWon1 = true;
+				bool isWon2 = true;
+
+				for (int cord2 = 0; cord2 < size; cord2++)
+				{
+					PlayerType field1 = playboard[cord1, cord2];
+					PlayerType field2 = playboard[cord2, cord1];
+
+					if (check1 == PlayerType.Empty && field1 != PlayerType.None)
+					{
+						check1 = field1;
+					}
+					else if (field1 == PlayerType.None || check1 != field1)
+					{
+						isWon1 = false;
+					}
+
+					if (check2 == PlayerType.Empty && field2 != PlayerType.None)
+					{
+						check2 = field2;
+					}
+					else if (field2 == PlayerType.None || check2 != field2)
+					{
+						isWon2 = false;
+					}
+
+				}
+
+				if (isWon1)
+				{
+					return check1;
+				}
+
+				if (isWon2)
+				{
+					return check2;
+				}
+
+			}
+
+			// Diagonalen überprüfen
+			{
+				bool isWon = true;
+				PlayerType check = PlayerType.Empty;
+
+				for (int cord = 0; cord < size; cord++)
+				{
+					PlayerType field = playboard[cord, cord];
+
+					if (check == PlayerType.Empty && field != PlayerType.None)
+					{
+						check = field;
+					}
+					else if (field == PlayerType.None || check != field)
+					{
+						isWon = false;
+					}
+
+				}
+
+				if (isWon)
+				{
+					return check;
+				}
+
+			}
+
+			{
+				bool isWon = true;
+				PlayerType check = PlayerType.Empty;
+
+				for (int cord = 0; cord < size; cord++)
+				{
+					PlayerType field = playboard[cord, size - 1 - cord];
+
+					if (check == PlayerType.Empty && field != PlayerType.None)
+					{
+						check = field;
+					}
+					else if (field == PlayerType.None || check != field)
+					{
+						isWon = false;
+					}
+
+				}
+
+				if (isWon)
+				{
+					return check;
+				}
+
+			}
+
+			return PlayerType.None;
+		}
+
     }
 
 	/*
@@ -78,10 +234,11 @@ namespace Tic_Tac_Toe.GameFramework
 
 	/*
 	 * Unterscheidet die beiden Spieler und leere Felder von einander
+	 * None = Leeres Feld; Empty = Null
 	 */
 	enum PlayerType
 	{
-		Player1, Player2, None
+		Player1, Player2, None, Empty
 	}
 
 }

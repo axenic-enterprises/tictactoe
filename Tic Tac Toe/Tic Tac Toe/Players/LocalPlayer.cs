@@ -13,14 +13,18 @@ namespace Tic_Tac_Toe.Players
 		// Beziehungsobjekt zum Hauptspiel
 		private Game game;
 
+		// Spielernumber
+		private PlayerType playerType;
+
 		/*
 		 * Konstruktor um eine Beziehung zwischen Spieler und Spiel zu erstellen und um zwischen Spieler 1 und 2 zu unterscheiden 
 		 */
-		public LocalPlayer(Game game)
+		public LocalPlayer(Game game, PlayerType playerType)
 		{
 			this.game = game;
+			this.playerType = playerType;
 		}
-
+		
 		/*
 		 * Gibt neue eingegebene Position des Spielers zurück
 		 */
@@ -35,13 +39,13 @@ namespace Tic_Tac_Toe.Players
 		 * Schreibt einen 2D-int-Array in die Konsole
 		 * Index verhält sich, wie in einem Koordinatensystem
 		 */
-		private void Write(int[,] playboard)
+		private void Write(PlayerType[,] playboard)
 		{
 			// "Kantengrößte des Quadrats"
 			int size = Convert.ToInt32(Math.Sqrt(playboard.Length));
 
 			// Felder in gewünschter Reihenfolge durchgehen und mit spezieller Formatierung ausgeben
-			for (int x = size - 1; x < -1; x--)
+			for (int x = size - 1; x > -1; x--)
 			{
 				string row = "[";
 

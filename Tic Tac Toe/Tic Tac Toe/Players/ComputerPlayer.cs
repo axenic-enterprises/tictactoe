@@ -13,12 +13,16 @@ namespace Tic_Tac_Toe.Players
 		// Beziehungsobjekt zum Hauptspiel
 		private Game game;
 
+		// Spielernumber
+		private PlayerType playerType;
+
 		/*
 		 * Konstruktor um eine Beziehung zwischen Spieler und Spiel zu erstellen und um zwischen Spieler 1 und 2 zu unterscheiden
 		 */
-		public ComputerPlayer(Game game)
+		public ComputerPlayer(Game game, PlayerType playerType)
 		{
 			this.game = game;
+			this.playerType = playerType;
 		}
 
 		/*
