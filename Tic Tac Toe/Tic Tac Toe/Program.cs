@@ -11,7 +11,7 @@ namespace Tic_Tac_Toe
     {
         /*
          * Übernimmt die Interaktion mit dem Benutzer und startet einzelne Partien.
-         * Fragt nach jeder Partei, ob noch einmal gespielt werden soll oder nicht.
+         * Fragt nach jeder Partie, ob noch einmal gespielt werden soll oder nicht.
          * Einzelne Partien werden an das GameFramework delegiert.
          */
         static void Main(string[] args)
@@ -31,7 +31,7 @@ namespace Tic_Tac_Toe
             }
             while (WantsToPlayAgain());
 
-            Console.WriteLine("Dann auf Wiedersehen. Bis zum nächsten Mal!");
+            Console.WriteLine("Tschüss, bis zum nächsten Mal!");
             Console.ReadKey(true);
         }
 
