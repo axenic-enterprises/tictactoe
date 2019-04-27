@@ -31,8 +31,37 @@ namespace Tic_Tac_Toe.Players
 		public (int, int) GetNewPosition()
 		{
 			// Spielfeld ausgeben, damit der Spieler seinen nächsten Zug entscheiden kann
+			Write(this.game.playboard);
+
+			// Eingabe
+			bool check = false;
+			int x = 0;
+			int y = 0;
+
+			do
+			{
+				Console.Write(playerType + ": Bitte geben sie die Koordinaten in dieser Schreibweise ein (xy --> z.B. 02): ");
+				String eingabe = Console.ReadLine();
+
+				if (Char.IsNumber(eingabe[0]) && Char.IsNumber(eingabe[1]) && eingabe.Length == 2)
+				{
+					x = Convert.ToInt32(eingabe[0]);
+					y = Convert.ToInt32(eingabe[1]);
+
+					int size = Convert.ToInt32(Math.Sqrt(this.game.playboard.Length));
+
+					if (x > -1 && x < size && y > -1 && y < size)
+					{
+						check = true;
+					}
+
+				}
+				
+			}
+			while (!check);
 			
-			throw new NotImplementedException();
+			// Rückgabe
+			return (x, y);
 		}
 
 		/*

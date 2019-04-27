@@ -62,10 +62,59 @@ namespace Tic_Tac_Toe.GameFramework
 			CheckIfPlayerAreSet();
 
             Console.WriteLine("RUNDE BEGINNT...");
-            //Runde spielen
+			//Runde spielen
+			Console.WriteLine(GivePlayerWon(playboard));
+			while (GiveGameState(this.playboard) == GameState.Running)
+			{
+				PlayerType nextPlayer = GiveNextPlayer(playboard);
+				IPlayer player = (nextPlayer == PlayerType.Player1 ? player1 : player2);
+				(int, int) position = player.GetNewPosition();
+				playboard[position.Item1, position.Item2] = nextPlayer;
+			}
+
             Console.WriteLine("RUNDE ABGESCHLOSSEN");
-            //Ergebnis ausgeben
+			//Ergebnis ausgeben
+			Console.WriteLine("Das Ergebnis des Spieles ist: " + GiveGameState(playboard));
         }
+
+		/*
+		 * Gibt zurück, welcher Spieler als nächstes am Zug ist
+		 */
+		public static PlayerType GiveNextPlayer(PlayerType[,] playboard)
+		{
+			int counter1 = 0, counter2 = 0;
+			int size = Convert.ToInt32(Math.Sqrt(playboard.Length));
+
+			for (int x = 0; x < size; x++)
+			{
+
+				for (int y = 0; y < size; y++)
+				{
+					PlayerType field = playboard[x, y];
+
+					if (field == PlayerType.Player1)
+					{
+						counter1++;
+					} 
+					else if (field == PlayerType.Player2)
+					{
+						counter2++;
+					}
+
+				}
+
+			}
+
+			if (counter1 > counter2)
+			{
+				return PlayerType.Player2;
+			} 
+			else
+			{
+				return PlayerType.Player1;
+			}
+
+		}
 
 		/*
 		 * Gibt den Spielstatus einen mitgegebenen Spielfeldes zurück
